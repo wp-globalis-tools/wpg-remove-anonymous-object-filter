@@ -7,11 +7,10 @@ function remove_anonymous_object_filter($tag, $class, $method) {
         return;
     }
 
- 	if(get_bloginfo('version') < 4.7) {
-      	$callbacks = $filters;
- 	}
-    else {
-      	$callbacks = $filters->callbacks;
+    if(version_compare(get_bloginfo('version'), '4.7', '>=')) {
+        $callbacks = $filters->callbacks;
+    } else {
+        $callbacks = $filters;
     }
 
     foreach ($callbacks as $priority => $filter) {
